@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateStreet.Parser.Web", "StateStreet.Parser.Web\StateStreet.Parser.Web.csproj", "{212032D4-76E8-48B3-805B-DB091E134F96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateStreet.Parser.Services", "StateStreet.Parser.Services\StateStreet.Parser.Services.csproj", "{5840667F-01F3-430A-9B5E-AC3A2D8147B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{212032D4-76E8-48B3-805B-DB091E134F96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212032D4-76E8-48B3-805B-DB091E134F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212032D4-76E8-48B3-805B-DB091E134F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212032D4-76E8-48B3-805B-DB091E134F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5840667F-01F3-430A-9B5E-AC3A2D8147B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5840667F-01F3-430A-9B5E-AC3A2D8147B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5840667F-01F3-430A-9B5E-AC3A2D8147B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5840667F-01F3-430A-9B5E-AC3A2D8147B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C5CDF7A-706D-4061-815C-A97D7B5E32F9}
+	EndGlobalSection
+EndGlobal

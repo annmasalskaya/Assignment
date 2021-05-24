@@ -1,0 +1,11 @@
+﻿@page "/"
+@using FluentValidation
+@using StateStreet.Parser.Services.Dto
+@inject IValidator<EventDto> _eventValidator
+
+<h1>State Street - Parser in Blazor</h1>
+
+<InputFile OnChange="@LoadFile" multiple />
+
+
+
