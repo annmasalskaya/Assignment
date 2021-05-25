@@ -1,11 +1,37 @@
 ﻿@page "/"
 @using FluentValidation
-@using StateStreet.Parser.Services.Dto
-@inject IValidator<EventDto> _eventValidator
+@using Microsoft.Extensions.Logging
+@using StateStreet.Parser.Web.DomainModels
+@using StateStreet.Parser.Web.Services
 
-<h1>State Street - Parser in Blazor</h1>
+@inject ILogger<Index> Logger;
+@inject ValidationService ValidationService;
 
-<InputFile OnChange="@LoadFile" multiple />
+<h1>File Parser in Blazor From Hanna Masalskaya for State Street</h1>
 
+<InputFile OnChange="@LoadFile" />
 
-
+@if (_eventModels.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Description</th>
+                <th>Event Start</th>
+                <th>Event End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mode in _eventModels)
+            {
+                <tr>
+                    <td>@mode.Name</td>
+                    <td>@mode.Description</td>
+                    <td>@mode.StartDateTime</td>
+                    <td>@mode.EndDateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

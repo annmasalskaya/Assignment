@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Globalization;
 using FluentValidation;
-using StateStreet.Parser.Services.Dto;
+using StateStreet.Parser.Web.DomainModels;
 
 namespace StateStreet.Parser.Web.Validation
 {
-    public class EventDtoValidator : AbstractValidator<EventDto>
+    public class EventDataValidator : AbstractValidator<EventData>
     {
         private const string DateFormat = "yyyy-MM-ddTHH:mmzzz";
-        public EventDtoValidator()
+        public EventDataValidator()
         {
             RuleFor(e => e.Name)
                 .NotEmpty().WithMessage("Event Name must not be empty")
@@ -18,16 +19,19 @@ namespace StateStreet.Parser.Web.Validation
                 .NotEmpty().WithMessage("Event Description must not be empty")
                 .MaximumLength(255).Matches(@"[^\;]+").WithMessage("Event Description should be up to 255 characters long");
 
-            RuleFor(e => e.StartDateTime).Must(BeValidDate).WithMessage($"Start Date should be {DateFormat}");
+            RuleFor(e => e.StartDateTime)
+                .Must(BeValidDate)
+                .WithMessage($"Start Date should be {DateFormat}");
 
+            //Todo Add validation that End date time must be after Start Date Time
             RuleFor(e => e.EndDateTime)
-                .Must(BeValidDate).WithMessage($"End Date format should be {DateFormat}")
-                .GreaterThanOrEqualTo(x => x.StartDateTime).WithMessage("End Date must be equal or after Start Date");
+                .Must(BeValidDate)
+                .WithMessage($"End Date format should be {DateFormat}");
         }
 
         private bool BeValidDate(string value)
         {
-            return DateTime.TryParseExact(value, DateFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out _);
+            return DateTime.TryParseExact(value, DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
         }
     }
 }

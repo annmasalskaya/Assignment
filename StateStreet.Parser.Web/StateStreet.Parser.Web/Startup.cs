@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StateStreet.Parser.Services.Domain;
-using StateStreet.Parser.Services.Dto;
-using StateStreet.Parser.Web.Data;
-using EventDtoValidator = StateStreet.Parser.Web.Validation.EventDtoValidator;
+using StateStreet.Parser.Web.DomainModels;
+using StateStreet.Parser.Web.Services;
+using StateStreet.Parser.Web.Validation;
 
 namespace StateStreet.Parser.Web
 {
@@ -26,11 +25,12 @@ namespace StateStreet.Parser.Web
             services.AddRazorPages();
             services.AddMvc().AddFluentValidation();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
+            services.AddTransient<IValidator<EventData>, EventDataValidator>();
+            services.AddTransient<IValidator<RawEventData>, InputDataValidator>();
 
-            services.AddTransient<IValidator<EventDto>, EventDtoValidator>();
-            services.AddScoped<ITransformationService, TransformationService>();
+            //Service could be registered with interface but I don`t see valuable reasons to do it in this project
+            services.AddTransient<ValidationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,6 +42,7 @@ namespace StateStreet.Parser.Web
             else
             {
                 app.UseExceptionHandler("/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
