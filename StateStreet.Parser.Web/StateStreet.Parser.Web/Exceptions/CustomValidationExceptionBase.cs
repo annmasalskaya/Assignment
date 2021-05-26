@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StateStreet.Parser.Web.Constants;
 
 namespace StateStreet.Parser.Web.Exceptions
 {
@@ -7,7 +8,7 @@ namespace StateStreet.Parser.Web.Exceptions
     public abstract class CustomValidationExceptionBase : Exception
     {
         protected CustomValidationExceptionBase(IEnumerable<string> errorMessages)
-            : this(string.Join("\n\r", errorMessages))
+            : this(string.Join(StringConstants.NewLineNonUnixPlatform, errorMessages))
         {
         }
 

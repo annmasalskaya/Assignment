@@ -1,15 +1,13 @@
 ﻿@page "/"
-@using FluentValidation
 @using Microsoft.Extensions.Logging
-@using StateStreet.Parser.Web.DomainModels
 @using StateStreet.Parser.Web.Services
 
 @inject ILogger<Index> Logger;
 @inject ValidationService ValidationService;
 
-<h1>File Parser in Blazor From Hanna Masalskaya for State Street</h1>
+<h1>File Parser in Blazor from Hanna Masalskaya for State Street</h1><hr/><hr />
 
-<InputFile OnChange="@LoadFile" />
+<InputFile OnChange="@LoadFileAsync" />
 
 @if (_eventModels.Any())
 {

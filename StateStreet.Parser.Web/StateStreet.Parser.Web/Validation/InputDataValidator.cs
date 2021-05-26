@@ -9,7 +9,7 @@ namespace StateStreet.Parser.Web.Validation
         {
             RuleForEach(input => input.RawEvents)
                 .Must(items => items.Length == 4)
-                .WithMessage("Badly formatted input data at row # {CollectionIndex}");
+                .WithMessage("Badly formatted input data at row # {CollectionIndex}.");
         }
     }
 }

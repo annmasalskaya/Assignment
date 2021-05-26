@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
+using StateStreet.Parser.Web.Constants;
 using StateStreet.Parser.Web.DomainModels;
 using StateStreet.Parser.Web.Exceptions;
 
@@ -31,10 +32,11 @@ namespace StateStreet.Parser.Web.Services
                 }
             }
             //Validation via exceptions is not really good design but quick to implement
-            //https://stackoverflow.com/questions/1504302/is-it-a-good-or-bad-idea-throwing-exceptions-when-validating-data
+            //for example https://stackoverflow.com/questions/1504302/is-it-a-good-or-bad-idea-throwing-exceptions-when-validating-data
             catch (InvalidInputException exception)
             {
                 _logger.LogError(exception.Message);
+                throw;
             }
         }
 
@@ -52,17 +54,18 @@ namespace StateStreet.Parser.Web.Services
             catch (InvalidDataFormatException exception)
             {
                 _logger.LogError(exception.Message);
+                throw;
             }
         }
 
         private IEnumerable<string> ValidateEachEventDataItem(EventData[] data)
         {
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 var validationResult = _eventDataValidator.Validate(data[i]);
                 if (validationResult.IsValid == false)
                 {
-                    yield return $"The following errors in row #{i + 1}: {string.Join("\n\r", validationResult)}";
+                    yield return $"The following errors in row #{i + 1}: {string.Join(StringConstants.NewLineNonUnixPlatform, validationResult)}";
                 }
             }
         }
