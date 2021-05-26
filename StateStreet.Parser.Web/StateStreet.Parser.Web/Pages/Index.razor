@@ -1,0 +1,35 @@
+﻿@page "/"
+@using Microsoft.Extensions.Logging
+@using StateStreet.Parser.Web.Services
+
+@inject ILogger<Index> Logger;
+@inject ValidationService ValidationService;
+
+<h1>File Parser in Blazor from Hanna Masalskaya for State Street</h1><hr/><hr />
+
+<InputFile OnChange="@LoadFileAsync" />
+
+@if (_eventModels.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Description</th>
+                <th>Event Start</th>
+                <th>Event End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mode in _eventModels)
+            {
+                <tr>
+                    <td>@mode.Name</td>
+                    <td>@mode.Description</td>
+                    <td>@mode.StartDateTime</td>
+                    <td>@mode.EndDateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
