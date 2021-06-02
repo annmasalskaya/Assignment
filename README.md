@@ -1,4 +1,4 @@
-# Test assesment for S.Street 
+# Test assesment
 
 Folders structure in the project imitates the real good architecture since there was no so much sense to separate logic into other projects.
 There are a lot of places in code to improve, at least the following points: 
